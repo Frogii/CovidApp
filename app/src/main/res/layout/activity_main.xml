@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
     tools:context=".ui.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,9 +19,14 @@
         android:id="@+id/mainSpinnerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:spinnerMode="dialog"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/gray_outline"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/mainRecyclerView"
+        tools:listitem="@layout/spinner_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

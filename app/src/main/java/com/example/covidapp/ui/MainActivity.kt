@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.covidapp.R
+import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.adapter.CountriesRecAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
 import com.example.covidapp.repository.CovidRepository
@@ -30,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.mainSpinnerView.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-
                 }
 
                 override fun onItemSelected(
@@ -41,9 +42,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Toast.makeText(view?.context, listOfCountries[position], Toast.LENGTH_SHORT).show()
                 }
-
             }
-
 
         val repository = CovidRepository()
         val viewModelProviderFactory = MainViewModelProviderFactory(repository)
@@ -59,15 +58,11 @@ class MainActivity : AppCompatActivity() {
                     listOfCountries.add(item.name)
                 }
                 listOfCountries.sortBy { it }
-                val arrayAdapter = ArrayAdapter<String>(
-                    this,
-                    android.R.layout.simple_spinner_dropdown_item,
-                    listOfCountries
-                )
+                val arrayAdapter = ArraySpinnerAdapter(this, R.layout.spinner_item, listOfCountries)
+
                 activityMainBinding.mainSpinnerView.adapter = arrayAdapter
                 activityMainBinding.mainSpinnerView.prompt = "Country"
             }
-
         }
     }
 
