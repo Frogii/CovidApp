@@ -3,4 +3,5 @@
     <dimen name="case_count">36sp</dimen>
     <dimen name="case_text">12sp</dimen>
     <dimen name="title_size">18sp</dimen>
+    <dimen name="header_size">22sp</dimen>
 </resources>
