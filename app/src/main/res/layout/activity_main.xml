@@ -1,32 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mainRecyclerView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/country_item" />
+        android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/mainSpinnerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/gray_outline"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainRecyclerView"
-        tools:listitem="@layout/spinner_item" />
+        <Spinner
+            android:id="@+id/mainSpinnerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="330dp"
+            android:layout_marginEnd="16dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/gray_outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/spinner_item" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainSpinnerView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/texViewInfectedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/white"
+                    android:text="1000"
+                    android:textColor="@color/infected"
+                    android:textSize="@dimen/case_count"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/texViewInfected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Infected"
+                    android:textSize="@dimen/case_text"
+                    app:layout_constraintEnd_toEndOf="@+id/texViewInfectedCount"
+                    app:layout_constraintStart_toStartOf="@+id/texViewInfectedCount"
+                    app:layout_constraintTop_toBottomOf="@+id/texViewInfectedCount" />
+
+                <TextView
+                    android:id="@+id/texViewDeathsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/white"
+                    android:text="654"
+                    android:textColor="@color/deaths"
+                    android:textSize="@dimen/case_count"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/texViewDeaths"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Deaths"
+                    android:textSize="@dimen/case_text"
+                    app:layout_constraintEnd_toEndOf="@+id/texViewDeathsCount"
+                    app:layout_constraintStart_toStartOf="@+id/texViewDeathsCount"
+                    app:layout_constraintTop_toBottomOf="@+id/texViewDeathsCount" />
+
+                <TextView
+                    android:id="@+id/texViewRecoveredCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/white"
+                    android:text="8042"
+                    android:textColor="@color/recovered"
+                    android:textSize="@dimen/case_count"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/texViewRecovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Recovered"
+                    android:textSize="@dimen/case_text"
+                    app:layout_constraintEnd_toEndOf="@+id/texViewRecoveredCount"
+                    app:layout_constraintStart_toStartOf="@+id/texViewRecoveredCount"
+                    app:layout_constraintTop_toBottomOf="@+id/texViewRecoveredCount" />
+
+                <ImageView
+                    android:id="@+id/imageViewInfectedRound"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_round"
+                    app:layout_constraintBottom_toTopOf="@+id/texViewInfectedCount"
+                    app:layout_constraintEnd_toEndOf="@+id/texViewInfectedCount"
+                    app:layout_constraintStart_toStartOf="@+id/texViewInfectedCount"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/infected" />
+
+                <ImageView
+                    android:id="@+id/imageViewInfectedCircle"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewInfectedRound"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewInfectedRound"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewInfectedRound"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewInfectedRound"
+                    app:tint="@color/infected" />
+
+                <ImageView
+                    android:id="@+id/imageViewDeathsRound"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_round"
+                    app:layout_constraintBottom_toTopOf="@+id/texViewDeathsCount"
+                    app:layout_constraintEnd_toEndOf="@+id/texViewDeathsCount"
+                    app:layout_constraintStart_toStartOf="@+id/texViewDeathsCount"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/deaths" />
+
+                <ImageView
+                    android:id="@+id/imageViewDeathsCircle"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewDeathsRound"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewDeathsRound"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewDeathsRound"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewDeathsRound"
+                    app:tint="@color/deaths" />
+
+                <ImageView
+                    android:id="@+id/imageViewRecoveredRound"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_round"
+                    app:layout_constraintBottom_toTopOf="@+id/texViewRecoveredCount"
+                    app:layout_constraintEnd_toEndOf="@+id/texViewRecoveredCount"
+                    app:layout_constraintStart_toStartOf="@+id/texViewRecoveredCount"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/recovered" />
+
+                <ImageView
+                    android:id="@+id/imageViewRecoveredCircle"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewRecoveredRound"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewRecoveredRound"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewRecoveredRound"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewRecoveredRound"
+                    app:tint="@color/recovered" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textViewCaseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/case_update_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/textViewSpreadTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/spread_of_virus_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintStart_toStartOf="@+id/cardView2" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="36dp"
+            app:cardElevation="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/textViewNewestUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/newest_update"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/textViewCaseTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCaseTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

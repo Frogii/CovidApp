@@ -12,10 +12,13 @@ class ArraySpinnerAdapter(context: Context, resource: Int, list: List<String>) :
     ArrayAdapter<String>(context, resource, list) {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
+    lateinit var binding: SpinnerItemBinding
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding = SpinnerItemBinding.inflate(layoutInflater, parent, false)
+        if (convertView == null) {
+            binding = SpinnerItemBinding.inflate(layoutInflater, parent, false)
+        }
         val country = getItem(position)
         binding.textViewSpinner.text = country
         return binding.root

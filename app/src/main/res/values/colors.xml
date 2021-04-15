@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_line">#CDCDCD</color>
+    <color name="background">#F6F5F4</color>
+    <color name="infected">#FF8D52</color>
+    <color name="recovered">#3EC333</color>
+    <color name="deaths">#FF5050</color>
 </resources>
