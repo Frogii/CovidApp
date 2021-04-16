@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_main_scene"
-    app:motionDebug="SHOW_ALL"
     tools:context=".ui.MainActivity">
 
     <com.github.florent37.shapeofview.shapes.ArcView
@@ -258,12 +257,12 @@
             app:layout_constraintStart_toStartOf="@+id/cardViewCases" />
 
         <TextView
-            android:id="@+id/textViewSpreadTitle"
+            android:id="@+id/textViewMapTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="@string/spread_of_virus_title"
+            android:text="@string/map_of_virus_title"
             android:textColor="@color/black"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"

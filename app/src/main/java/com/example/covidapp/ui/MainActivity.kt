@@ -16,9 +16,16 @@ import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.adapter.CountriesRecAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
 import com.example.covidapp.repository.CovidRepository
+import com.example.covidapp.utils.AppMapUtils
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
+    lateinit var map: GoogleMap
     lateinit var mainViewModel: MainViewModel
     lateinit var activityMainBinding: ActivityMainBinding
     private var listOfCountries: MutableList<String> = mutableListOf()
@@ -28,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
         setAnimation()
+
+        val mapBundle = savedInstanceState?.getBundle("MapBundle")
+        activityMainBinding.mapView.onCreate(mapBundle)
+        activityMainBinding.mapView.getMapAsync(this)
         val repository = CovidRepository()
         val viewModelProviderFactory = MainViewModelProviderFactory(repository)
         mainViewModel =
@@ -58,26 +69,73 @@ class MainActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    Toast.makeText(view?.context, listOfCountries[position], Toast.LENGTH_SHORT).show()
+                    Toast.makeText(view?.context, listOfCountries[position], Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
     }
 
     private fun setAnimation() {
-        val animRecovered = ObjectAnimator.ofFloat(activityMainBinding.imageViewInfectedRound, "alpha", 0f, 1f)
+        val animRecovered =
+            ObjectAnimator.ofFloat(activityMainBinding.imageViewInfectedRound, "alpha", 0f, 1f)
         animRecovered.duration = 1200
         animRecovered.repeatMode = ValueAnimator.REVERSE
         animRecovered.repeatCount = Animation.INFINITE
         animRecovered.start()
-        val animDeaths = ObjectAnimator.ofFloat(activityMainBinding.imageViewDeathsRound, "alpha", 0f, 1f)
+        val animDeaths =
+            ObjectAnimator.ofFloat(activityMainBinding.imageViewDeathsRound, "alpha", 0f, 1f)
         animDeaths.duration = 1200
         animDeaths.repeatMode = ValueAnimator.REVERSE
         animDeaths.repeatCount = Animation.INFINITE
         animDeaths.start()
-        val animInfected = ObjectAnimator.ofFloat(activityMainBinding.imageViewRecoveredRound, "alpha", 0f, 1f)
+        val animInfected =
+            ObjectAnimator.ofFloat(activityMainBinding.imageViewRecoveredRound, "alpha", 0f, 1f)
         animInfected.duration = 1200
         animInfected.repeatMode = ValueAnimator.REVERSE
         animInfected.repeatCount = Animation.INFINITE
         animInfected.start()
+    }
+
+    override fun onMapReady(p0: GoogleMap?) {
+        p0?.let {
+            map = it
+        }
+        map.uiSettings.isTiltGesturesEnabled = false
+        map.uiSettings.isScrollGesturesEnabled = false
+        map.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = false
+        map.uiSettings.isZoomGesturesEnabled = false
+
+        map.addMarker(AppMapUtils.setMarkerOptions(this, "Sydney", LatLng(53.893009, 27.567444)))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(53.893009, 27.567444), 3f ))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activityMainBinding.mapView.onResume()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        activityMainBinding.mapView.onStart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        activityMainBinding.mapView.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activityMainBinding.mapView.onStop()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activityMainBinding.mapView.onLowMemory()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        activityMainBinding.mapView.onSaveInstanceState(outState)
     }
 }

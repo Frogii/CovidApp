@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">CovidApp</string>
     <string name="case_update_title">Case Update</string>
-    <string name="spread_of_virus_title">Spread of Virus</string>
+    <string name="maps_key">AIzaSyDwXab5o0SS8MqWJMZDCUCJv6LmKXWObZA</string>
+    <string name="map_of_virus_title">Map of Virus</string>
     <string name="newest_update">Newest update March 28</string>
     <string name="header_title">All you need \n is stay at home.</string>
 </resources>
