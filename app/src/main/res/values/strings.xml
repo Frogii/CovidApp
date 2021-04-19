@@ -9,4 +9,11 @@
     <string name="case_deaths">Deaths</string>
     <string name="case_infected">Infected</string>
     <string name="case_recovered">Recovered</string>
+    <string name="know_about_covid">Get to know \n About Covid-19</string>
+    <string name="headache">Headache</string>
+    <string name="symptomps">Symptomps</string>
+    <string name="wear_face_mask">Wear face mask</string>
+    <string name="wear_mask_text">Since the start of the coronavirus outbreak some places have fully embraced wearing face masks,
+        and anyone caught without one risks becoming a social pariah.</string>
+    <string name="prevention">Prevention</string>
 </resources>

@@ -105,10 +105,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
-                    android:text="1000"
+                    android:layout_marginEnd="64dp"
+                    android:text="0"
                     android:textColor="@color/infected"
                     android:textSize="@dimen/case_count"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/texViewDeathsCount"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:text="654"
+                    android:text="0"
                     android:textColor="@color/deaths"
                     android:textSize="@dimen/case_count"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -151,13 +153,15 @@
                     android:id="@+id/texViewRecoveredCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
-                    android:text="8042"
+                    android:text="0"
                     android:textColor="@color/recovered"
                     android:textSize="@dimen/case_count"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/texViewDeathsCount"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
