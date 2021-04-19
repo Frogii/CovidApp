@@ -8,6 +8,16 @@
     app:layoutDescription="@xml/activity_main_scene"
     tools:context=".ui.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageViewMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu"
+        android:layout_margin="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="20dp"/>
+
     <com.github.florent37.shapeofview.shapes.ArcView
         android:id="@+id/header"
         android:layout_width="match_parent"

@@ -1,10 +1,8 @@
 package com.example.covidapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.covidapp.R
 import com.example.covidapp.adapter.PreventionRecyclerAdapter
 import com.example.covidapp.databinding.ActivityAboutBinding
 
@@ -20,10 +18,18 @@ class AboutActivity : AppCompatActivity() {
 
         setupRecycler()
 
-
+        aboutBinding.imageViewMenuAbout.setOnClickListener {
+            this.finish()
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
-    fun setupRecycler() {
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+    }
+    private fun setupRecycler() {
         preventionRecyclerAdapter = PreventionRecyclerAdapter()
         aboutBinding.recyclerPreventions.adapter = preventionRecyclerAdapter
         aboutBinding.recyclerPreventions.layoutManager = LinearLayoutManager(aboutBinding.root.context)
