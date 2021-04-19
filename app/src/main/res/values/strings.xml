@@ -5,4 +5,8 @@
     <string name="map_of_virus_title">Map of Virus</string>
     <string name="newest_update">Newest update March 28</string>
     <string name="header_title">All you need \n is stay at home.</string>
+    <string name="country">Country</string>
+    <string name="case_deaths">Deaths</string>
+    <string name="case_infected">Infected</string>
+    <string name="case_recovered">Recovered</string>
 </resources>

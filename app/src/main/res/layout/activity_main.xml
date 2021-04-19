@@ -103,7 +103,7 @@
                     android:id="@+id/texViewInfectedCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:text="1000"
                     android:textColor="@color/infected"
@@ -117,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Infected"
+                    android:text="@string/case_infected"
                     android:textSize="@dimen/case_text"
                     app:layout_constraintEnd_toEndOf="@+id/texViewInfectedCount"
                     app:layout_constraintStart_toStartOf="@+id/texViewInfectedCount"
@@ -141,7 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Deaths"
+                    android:text="@string/case_deaths"
                     android:textSize="@dimen/case_text"
                     app:layout_constraintEnd_toEndOf="@+id/texViewDeathsCount"
                     app:layout_constraintStart_toStartOf="@+id/texViewDeathsCount"
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="32dp"
                     android:text="8042"
                     android:textColor="@color/recovered"
                     android:textSize="@dimen/case_count"
@@ -165,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Recovered"
+                    android:text="@string/case_recovered"
                     android:textSize="@dimen/case_text"
                     app:layout_constraintEnd_toEndOf="@+id/texViewRecoveredCount"
                     app:layout_constraintStart_toStartOf="@+id/texViewRecoveredCount"
@@ -293,6 +293,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -301,7 +302,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/newest_update"
-            android:textSize="11sp"
+            android:textSize="@dimen/newest_update_size"
             app:layout_constraintStart_toStartOf="@+id/textViewCaseTitle"
             app:layout_constraintTop_toBottomOf="@+id/textViewCaseTitle" />
 

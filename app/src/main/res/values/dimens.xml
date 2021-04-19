@@ -4,4 +4,5 @@
     <dimen name="case_text">12sp</dimen>
     <dimen name="title_size">18sp</dimen>
     <dimen name="header_size">22sp</dimen>
+    <dimen name="newest_update_size">11sp</dimen>
 </resources>

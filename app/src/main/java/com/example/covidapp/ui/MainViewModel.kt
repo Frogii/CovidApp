@@ -1,17 +1,15 @@
 package com.example.covidapp.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class MainViewModel(private val repository: CovidRepository) : ViewModel() {
 
-    private val countriesLiveData: MutableLiveData<Response<List<CountryItem>>> = MutableLiveData()
+    private val countriesLiveData: MutableLiveData<List<CountryItem>> = MutableLiveData()
 
     init {
         uploadAllCountries()
@@ -19,14 +17,20 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
 
     fun uploadAllCountries() {
         viewModelScope.launch {
+            val listOfCountries = mutableListOf<CountryItem>()
             val response = repository.getAllCountries()
             if (response.isSuccessful) {
-                countriesLiveData.postValue(response)
+                response.body()?.let { list ->
+                    for (item in list) {
+                        listOfCountries.add(item)
+                    }
+                    listOfCountries.sortBy { country -> country.name }
+                    countriesLiveData.postValue(listOfCountries)
+                }
             }
         }
     }
 
-    fun getCountriesLiveData(): MutableLiveData<Response<List<CountryItem>>> {
-        return countriesLiveData
-    }
+    fun getCountriesLiveData(): MutableLiveData<List<CountryItem>> = countriesLiveData
+
 }
