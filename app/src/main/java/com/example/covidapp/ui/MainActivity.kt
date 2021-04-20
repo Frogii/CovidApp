@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.example.covidapp.R
 import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
 import com.example.covidapp.repository.CovidRepository
@@ -23,7 +22,6 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
 
     lateinit var map: GoogleMap
     lateinit var mainViewModel: MainViewModel
-    private var listOfCountries: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +32,13 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
         val mapBundle = savedInstanceState?.getBundle("MapBundle")
         activityMainBinding.mapView.onCreate(mapBundle)
         activityMainBinding.mapView.getMapAsync(this)
-        val repository = CovidRepository()
-        val viewModelProviderFactory = MainViewModelProviderFactory(repository)
+        val viewModelProviderFactory = MainViewModelProviderFactory(CovidRepository())
         mainViewModel =
             ViewModelProvider(this, viewModelProviderFactory).get(MainViewModel::class.java)
-        val arrayAdapter = ArraySpinnerAdapter(this, R.layout.spinner_item, listOfCountries)
-        activityMainBinding.mainSpinnerView.adapter = arrayAdapter
 
-        mainViewModel.getCountriesLiveData().observe(this) { list ->
-            for (country in list) {
-                listOfCountries.add(country.name)
-            }
-            arrayAdapter.setList(listOfCountries)
-
+        mainViewModel.getNameOfCountries().observe(this) { list ->
+            val arrayAdapter = ArraySpinnerAdapter(this, list)
+            activityMainBinding.mainSpinnerView.adapter = arrayAdapter
         }
 
         activityMainBinding.mainSpinnerView.onItemSelectedListener =
@@ -61,8 +53,11 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
                     id: Long
                 ) {
                     if (view != null) {
-                        Toast.makeText(view.context, listOfCountries[position], Toast.LENGTH_SHORT)
+                        parent?.let {
+                        val selectedItem = it.getItemAtPosition(position)
+                        Toast.makeText(view.context, selectedItem.toString(), Toast.LENGTH_SHORT)
                             .show()
+                        }
                     }
                 }
             }
