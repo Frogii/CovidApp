@@ -1,8 +1,10 @@
 package com.example.covidapp.ui
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.covidapp.model.CountryCase
 import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
 import kotlinx.coroutines.launch
@@ -11,34 +13,63 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
 
     private val countries: MutableLiveData<List<CountryItem>> = MutableLiveData()
     private val nameOfCountries: MutableLiveData<List<String>> = MutableLiveData()
+    private val cases: MutableLiveData<CountryCase> = MutableLiveData()
 
     init {
         uploadAllCountries()
     }
 
-    fun uploadAllCountries() {
-        viewModelScope.launch {
-            val listOfCountries = mutableListOf<CountryItem>()
-            val listOfNames = mutableListOf<String>()
-            val response = repository.getAllCountries()
-            if (response.isSuccessful) {
-                response.body()?.let { list ->
-                    for (item in list) {
-                        listOfCountries.add(item)
+    fun getCases(countryName: String) {
+            viewModelScope.launch {
+                try {
+                    val response = repository.getCases(countryName)
+                    if (response.isSuccessful) {
+                        response.body()?.let { list ->
+                            if (list.isNotEmpty()) {
+                                cases.postValue(list.last())
+                            } else {
+                                cases.postValue(CountryCase())
+                            }
+
+                        }
                     }
-                    listOfCountries.sortBy { country -> country.name }
-                    for (country in listOfCountries) {
-                        listOfNames.add(country.name)
-                    }
-                    nameOfCountries.postValue(listOfNames)
-                    countries.postValue(listOfCountries)
+                } catch (e: Exception) {
+                    Log.d("myLog", e.message.toString())
                 }
             }
+    }
+
+    fun uploadAllCountries() {
+        try {
+            viewModelScope.launch {
+                val listOfCountries = mutableListOf<CountryItem>()
+                val listOfNames = mutableListOf<String>()
+                val response = repository.getAllCountries()
+                if (response.isSuccessful) {
+                    response.body()?.let { list ->
+                        for (item in list) {
+                            listOfCountries.add(item)
+                        }
+                        listOfCountries.sortBy { country -> country.name }
+                        listOfCountries.removeAt(0)
+
+                        for (country in listOfCountries) {
+                            listOfNames.add(country.name)
+                        }
+                        nameOfCountries.postValue(listOfNames)
+                        countries.postValue(listOfCountries)
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.d("myLog", e.message.toString())
         }
     }
 
     fun getCountries(): MutableLiveData<List<CountryItem>> = countries
 
     fun getNameOfCountries(): MutableLiveData<List<String>> = nameOfCountries
+
+    fun getCase(): MutableLiveData<CountryCase> = cases
 
 }
