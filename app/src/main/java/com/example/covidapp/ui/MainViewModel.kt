@@ -9,7 +9,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: CovidRepository) : ViewModel() {
 
-    private val countriesLiveData: MutableLiveData<List<CountryItem>> = MutableLiveData()
+    private val countries: MutableLiveData<List<CountryItem>> = MutableLiveData()
+    private val nameOfCountries: MutableLiveData<List<String>> = MutableLiveData()
 
     init {
         uploadAllCountries()
@@ -18,6 +19,7 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
     fun uploadAllCountries() {
         viewModelScope.launch {
             val listOfCountries = mutableListOf<CountryItem>()
+            val listOfNames = mutableListOf<String>()
             val response = repository.getAllCountries()
             if (response.isSuccessful) {
                 response.body()?.let { list ->
@@ -25,12 +27,18 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
                         listOfCountries.add(item)
                     }
                     listOfCountries.sortBy { country -> country.name }
-                    countriesLiveData.postValue(listOfCountries)
+                    for (country in listOfCountries) {
+                        listOfNames.add(country.name)
+                    }
+                    nameOfCountries.postValue(listOfNames)
+                    countries.postValue(listOfCountries)
                 }
             }
         }
     }
 
-    fun getCountriesLiveData(): MutableLiveData<List<CountryItem>> = countriesLiveData
+    fun getCountries(): MutableLiveData<List<CountryItem>> = countries
+
+    fun getNameOfCountries(): MutableLiveData<List<String>> = nameOfCountries
 
 }
