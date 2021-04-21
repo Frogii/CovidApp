@@ -8,7 +8,7 @@
     <string name="country">Страна</string>
     <string name="case_deaths">Умершие</string>
     <string name="case_infected">Заболевшие</string>
-    <string name="case_recovered">Выздоровившие</string>
+    <string name="case_recovered">Выздоровевшие</string>
     <string name="know_about_covid">Узнайте больше \n о Covid-19</string>
     <string name="headache">Головная боль</string>
     <string name="cough">Кашель</string>
