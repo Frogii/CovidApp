@@ -39,7 +39,7 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
             }
     }
 
-    fun uploadAllCountries() {
+    private fun uploadAllCountries() {
         try {
             viewModelScope.launch {
                 val listOfCountries = mutableListOf<CountryItem>()
