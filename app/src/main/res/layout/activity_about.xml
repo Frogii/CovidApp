@@ -53,7 +53,7 @@
         android:elevation="20dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/know_about_covid"
-        android:textColor="@color/white"
+        android:textColor="@color/header_text"
         android:textSize="@dimen/header_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -111,7 +111,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
                     android:text="@string/headache"
-                    android:textColor="@color/black"
+                    android:textColor="@color/symptomp_text"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -146,7 +146,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Cough"
-                    android:textColor="@color/black"
+                    android:textColor="@color/symptomp_text"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -183,7 +183,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Fever"
-                    android:textColor="@color/black"
+                    android:textColor="@color/symptomp_text"
                     android:textSize="11sp" />
             </LinearLayout>
 

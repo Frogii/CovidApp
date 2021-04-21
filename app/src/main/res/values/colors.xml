@@ -7,7 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray_line">#CDCDCD</color>
+    <color name="menu_background">#ECEAEB</color>
+    <color name="header_text">#FFFFFFFF</color>
+    <color name="spinner_text">#FF000000</color>
+    <color name="spinner_stroke">#CDCDCD</color>
+    <color name="spinner_background">#FFFFFFFF</color>
+    <color name="symptomp_text">#FF000000</color>
     <color name="background">#F6F5F4</color>
     <color name="infected">#FF8D52</color>
     <color name="recovered">#3EC333</color>

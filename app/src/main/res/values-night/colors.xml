@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="menu_background">#FF000000</color>
+    <color name="header_text">#FF000000</color>
+    <color name="spinner_text">#CDCDCD</color>
+    <color name="spinner_stroke">#306AFD</color>
+    <color name="background">#6A6A6A</color>
+    <color name="spinner_background">#454545</color>
+    <color name="symptomp_text">#CDCDCD</color>
+</resources>
