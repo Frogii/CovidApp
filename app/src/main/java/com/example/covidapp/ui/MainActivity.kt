@@ -2,6 +2,7 @@ package com.example.covidapp.ui
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -61,6 +62,11 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
                     }
                 }
             }
+
+        activityMainBinding.imageViewMenu.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
     override fun onMapReady(p0: GoogleMap?) {
