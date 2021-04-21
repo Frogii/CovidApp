@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.example.covidapp.R
@@ -96,7 +95,7 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
                 } else {
                     textViewNewestUpdate.text = getString(R.string.no_info)
                     Snackbar.make(
-                        activityMainBinding.root, "No info for this country",
+                        activityMainBinding.root, getString(R.string.snackbar_no_info),
                         Snackbar.LENGTH_LONG
                     ).show()
                 }

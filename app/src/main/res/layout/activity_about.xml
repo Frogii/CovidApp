@@ -95,9 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="60dp"
@@ -130,9 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="60dp"
@@ -145,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Cough"
+                    android:text="@string/cough"
                     android:textColor="@color/symptomp_text"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -167,9 +163,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:orientation="vertical"
-                android:padding="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingTop="8dp">
 
                 <ImageView
                     android:layout_width="60dp"
@@ -182,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Fever"
+                    android:text="@string/fever"
                     android:textColor="@color/symptomp_text"
                     android:textSize="11sp" />
             </LinearLayout>
