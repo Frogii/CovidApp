@@ -16,18 +16,15 @@ import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
 import com.example.covidapp.utils.AppDateUtils
 import com.example.covidapp.utils.AppMapUtils
-import com.google.android.gms.maps.CameraUpdateFactory
+import com.example.covidapp.utils.Constants.mapBundle
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : MapActivity(), OnMapReadyCallback {
 
-    lateinit var map: GoogleMap
+    private var map: GoogleMap? = null
     lateinit var mainViewModel: MainViewModel
-    private var marker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,7 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
         setContentView(activityMainBinding.root)
         setAnimation()
 
-        val mapBundle = savedInstanceState?.getBundle("MapBundle")
+        val mapBundle = savedInstanceState?.getBundle(mapBundle)
         activityMainBinding.mapView.onCreate(mapBundle)
         activityMainBinding.mapView.getMapAsync(this)
         val viewModelProviderFactory = MainViewModelProviderFactory(CovidRepository())
@@ -76,39 +73,32 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap?) {
         p0?.let {
             map = it
+            it.uiSettings.isTiltGesturesEnabled = false
+            it.uiSettings.isScrollGesturesEnabled = false
+            it.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = false
         }
-        map.uiSettings.isTiltGesturesEnabled = false
-        map.uiSettings.isScrollGesturesEnabled = false
-        map.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = false
 
         mainViewModel.getCase().observe(this) { case ->
             activityMainBinding.apply {
-                marker?.remove()
-                texViewInfectedCount.text = case.confirmed.toString()
-                texViewDeathsCount.text = case.deaths.toString()
-                texViewRecoveredCount.text = case.recovered.toString()
-                if (case.date != "") {
+                map?.clear()
+                if (case != null) {
+                    texViewInfectedCount.text = case.confirmed.toString()
+                    texViewDeathsCount.text = case.deaths.toString()
+                    texViewRecoveredCount.text = case.recovered.toString()
                     textViewNewestUpdate.text = resources.getString(
                         R.string.newest_update,
                         AppDateUtils.convertDateToNewest(case.date)
                     )
+                    AppMapUtils.addMarker(this@MainActivity, map, case.lat, case.lon, case.country)
                 } else {
+                    texViewInfectedCount.text = getString(R.string.no_cases)
+                    texViewDeathsCount.text = getString(R.string.no_cases)
+                    texViewRecoveredCount.text = getString(R.string.no_cases)
                     textViewNewestUpdate.text = getString(R.string.no_info)
                     Snackbar.make(
                         activityMainBinding.root, getString(R.string.snackbar_no_info),
                         Snackbar.LENGTH_LONG
                     ).show()
-                }
-                val latLng = LatLng(case.lat.toDouble(), case.lon.toDouble())
-                if (case.lat != "0" && case.lon != "0") {
-                    marker = map.addMarker(
-                        AppMapUtils.setMarkerOptions(
-                            this@MainActivity,
-                            case.country,
-                            latLng
-                        )
-                    )
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 3f))
                 }
             }
         }

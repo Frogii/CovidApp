@@ -28,7 +28,7 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
                             if (list.isNotEmpty()) {
                                 cases.postValue(list.last())
                             } else {
-                                cases.postValue(CountryCase())
+                                cases.postValue(null)
                             }
 
                         }
