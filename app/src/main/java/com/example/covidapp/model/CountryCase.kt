@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 data class CountryCase(
     @SerializedName("City")
-    val city: String = "",
+    val city: String,
     @SerializedName("Confirmed")
-    val confirmed: Int = 0,
+    val confirmed: Int,
     @SerializedName("Country")
-    val country: String = "",
+    val country: String,
     @SerializedName("Date")
-    val date: String = "",
+    val date: String,
     @SerializedName("Deaths")
-    val deaths: Int = 0,
+    val deaths: Int,
     @SerializedName("Lat")
-    val lat: String = "0",
+    val lat: String,
     @SerializedName("Lon")
-    val lon: String = "0",
+    val lon: String,
     @SerializedName("Recovered")
-    val recovered: Int = 0
+    val recovered: Int
 )
