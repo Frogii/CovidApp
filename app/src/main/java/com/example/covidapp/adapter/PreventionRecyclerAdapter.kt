@@ -1,5 +1,6 @@
 package com.example.covidapp.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -30,8 +31,8 @@ class PreventionRecyclerAdapter() : RecyclerView.Adapter<PreventionRecyclerAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            textViewPreventionType.text = list[position].typeOfPrevention
-            textViewPreventionText.text = list[position].text
+            textViewPreventionType.text = root.resources.getString(list[position].typeOfPrevention)
+            textViewPreventionText.text = root.resources.getString(list[position].text)
             imageViewPrevention.setImageDrawable(ResourcesCompat
                 .getDrawable(root.resources, list[position].drawableId, null))
         }

@@ -8,8 +8,8 @@
         android:id="@+id/imageViewPrevention"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
         android:elevation="3dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/image_wear_mask"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cardViewPrevention"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="150dp" />
+                app:layout_constraintGuide_begin="160dp" />
 
             <TextView
                 android:id="@+id/textViewPreventionType"

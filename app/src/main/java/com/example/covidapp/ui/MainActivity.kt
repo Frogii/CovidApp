@@ -96,7 +96,7 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
                     texViewRecoveredCount.text = getString(R.string.no_cases)
                     textViewNewestUpdate.text = getString(R.string.no_info)
                     Snackbar.make(
-                        activityMainBinding.root, "No info for this country",
+                        activityMainBinding.root, getString(R.string.snackbar_no_info),
                         Snackbar.LENGTH_LONG
                     ).show()
                 }

@@ -1,0 +1,24 @@
+<resources>
+    <string name="case_update_title">Infektionsfälle</string>
+    <string name="map_of_virus_title">Virenkarte</string>
+    <string name="newest_update">Letztes Update %1$s</string>
+    <string name="header_title">Bleibe \n  zu Hause.</string>
+    <string name="country">Land</string>
+    <string name="case_deaths">Todesfälle</string>
+    <string name="case_infected">Infiziert</string>
+    <string name="case_recovered">Wiederhergestellt</string>
+    <string name="know_about_covid">Erkennen Sie \n mehr an Covid-19</string>
+    <string name="headache">Kopfschmerzen</string>
+    <string name="symptomps">Symptome</string>
+    <string name="wear_face_mask">Eine Maske tragen</string>
+    <string name="wash_your_hands">Hände waschen</string>
+    <string name="wear_mask_text">Gesichtsmasken sind an einigen Stellen zu einer Notwendigkeit geworden,
+        und jeder, der ohne Maske gefangen wird, läuft Gefahr, ein sozialer Ausgestoßener zu werden.</string>
+    <string name="wash_your_text">Diese Krankheiten umfassen Magen-Darm-Infektionen wie Salmonellen,
+        und Infektionen der Atemwege wie Influenza.</string>
+    <string name="prevention">Verhütung</string>
+    <string name="no_info">Keine Informationen</string>
+    <string name="cough">Husten</string>
+    <string name="fever">Fieber</string>
+    <string name="snackbar_no_info">Keine Information</string>
+</resources>

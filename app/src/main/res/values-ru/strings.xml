@@ -1,0 +1,24 @@
+<resources>
+    <string name="case_update_title">Случаи заражения</string>
+    <string name="map_of_virus_title">Карта вируса</string>
+    <string name="newest_update">Последнее обновление от %1$s</string>
+    <string name="header_title">Оставайтесь \n дома.</string>
+    <string name="country">Страна</string>
+    <string name="case_deaths">Умершие</string>
+    <string name="case_infected">Заболевшие</string>
+    <string name="case_recovered">Выздоровевшие</string>
+    <string name="know_about_covid">Узнайте больше \n о Covid-19</string>
+    <string name="headache">Головная боль</string>
+    <string name="cough">Кашель</string>
+    <string name="fever">Жар</string>
+    <string name="symptomps">Симптомы</string>
+    <string name="wear_face_mask">Носите маску</string>
+    <string name="wash_your_hands">Мойте руки</string>
+    <string name="wear_mask_text">С начала вспышки коронавируса, маски для лица стали неоходимостью в некоторых местах,
+        и любой, кого поймают без маски, рискует стать изгоем для общества.</string>
+    <string name="wash_your_text">Эти заболевания включают желудочно-кишечные инфекции, такие как сальмонелла,
+        и респираторные инфекции, такие как грипп.</string>
+    <string name="prevention">Профилактика</string>
+    <string name="no_info">Нет информации</string>
+    <string name="snackbar_no_info">Нет информации по этой стране</string>
+</resources>

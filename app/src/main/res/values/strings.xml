@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">CovidApp</string>
+    <string name="app_name" translatable="false">CovidApp</string>
     <string name="case_update_title">Case Update</string>
-    <string name="maps_key">AIzaSyDwXab5o0SS8MqWJMZDCUCJv6LmKXWObZA</string>
+    <string name="maps_key" translatable="false">AIzaSyDwXab5o0SS8MqWJMZDCUCJv6LmKXWObZA</string>
     <string name="map_of_virus_title">Map of Virus</string>
     <string name="newest_update">Newest update %1$s</string>
     <string name="header_title">All you need \n is stay at home.</string>
@@ -13,9 +13,15 @@
     <string name="headache">Headache</string>
     <string name="symptomps">Symptomps</string>
     <string name="wear_face_mask">Wear face mask</string>
+    <string name="wash_your_hands">Wash your hands</string>
     <string name="wear_mask_text">Since the start of the coronavirus outbreak some places have fully embraced wearing face masks,
         and anyone caught without one risks becoming a social pariah.</string>
+    <string name="wash_your_text">These diseases include gastrointestinal infections such as Salmonella,
+        and respiratory infections, such as influenza.</string>
     <string name="prevention">Prevention</string>
     <string name="no_info">No info</string>
-    <string name="no_cases">0</string>
+    <string name="no_cases" translatable="false">0</string>
+    <string name="cough">Cough</string>
+    <string name="fever">Fever</string>
+    <string name="snackbar_no_info">No info for this country</string>
 </resources>
