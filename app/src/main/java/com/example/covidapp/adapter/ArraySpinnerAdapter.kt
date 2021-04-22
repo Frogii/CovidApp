@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.example.covidapp.databinding.SpinnerDropdownItemBinding
 import com.example.covidapp.databinding.SpinnerItemBinding
+import com.example.covidapp.model.CountryItem
 
-class ArraySpinnerAdapter(context: Context, list: List<String>) :
-    ArrayAdapter<String>(context, 0, list) {
+class ArraySpinnerAdapter(context: Context, list: List<CountryItem>) :
+    ArrayAdapter<CountryItem>(context, 0, list) {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     lateinit var binding: SpinnerItemBinding
@@ -19,14 +20,14 @@ class ArraySpinnerAdapter(context: Context, list: List<String>) :
             binding = SpinnerItemBinding.inflate(layoutInflater, parent, false)
         }
         val country = getItem(position)
-        binding.textViewSpinner.text = country
+        binding.textViewSpinner.text = country?.name
         return binding.root
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         val binding = SpinnerDropdownItemBinding.inflate(layoutInflater, parent, false)
         val country = getItem(position)
-        binding.textViewDropdownSpinner.text = country
+        binding.textViewDropdownSpinner.text = country?.name
         return binding.root
     }
 }

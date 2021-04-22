@@ -7,21 +7,23 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.example.covidapp.R
 import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
+import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
+import com.example.covidapp.utils.AppDateUtils
 import com.example.covidapp.utils.AppMapUtils
-import com.google.android.gms.maps.CameraUpdateFactory
+import com.example.covidapp.utils.Constants.mapBundle
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : MapActivity(), OnMapReadyCallback {
 
-    lateinit var map: GoogleMap
+    private var map: GoogleMap? = null
     lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,14 +32,14 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
         setContentView(activityMainBinding.root)
         setAnimation()
 
-        val mapBundle = savedInstanceState?.getBundle("MapBundle")
+        val mapBundle = savedInstanceState?.getBundle(mapBundle)
         activityMainBinding.mapView.onCreate(mapBundle)
         activityMainBinding.mapView.getMapAsync(this)
         val viewModelProviderFactory = MainViewModelProviderFactory(CovidRepository())
         mainViewModel =
             ViewModelProvider(this, viewModelProviderFactory).get(MainViewModel::class.java)
 
-        mainViewModel.getNameOfCountries().observe(this) { list ->
+        mainViewModel.getCountries().observe(this) { list ->
             val arrayAdapter = ArraySpinnerAdapter(this, list)
             activityMainBinding.mainSpinnerView.adapter = arrayAdapter
         }
@@ -55,9 +57,8 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
                 ) {
                     if (view != null) {
                         parent?.let {
-                        val selectedItem = it.getItemAtPosition(position)
-                        Toast.makeText(view.context, selectedItem.toString(), Toast.LENGTH_SHORT)
-                            .show()
+                            val selectedItem = it.getItemAtPosition(position) as CountryItem
+                            mainViewModel.getCases(selectedItem.lowerCaseName)
                         }
                     }
                 }
@@ -72,14 +73,35 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap?) {
         p0?.let {
             map = it
+            it.uiSettings.isTiltGesturesEnabled = false
+            it.uiSettings.isScrollGesturesEnabled = false
+            it.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = false
         }
-        map.uiSettings.isTiltGesturesEnabled = false
-        map.uiSettings.isScrollGesturesEnabled = false
-        map.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = false
-        map.uiSettings.isZoomGesturesEnabled = false
 
-        map.addMarker(AppMapUtils.setMarkerOptions(this, "Blr", LatLng(53.893009, 27.567444)))
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(53.893009, 27.567444), 3f))
+        mainViewModel.getCase().observe(this) { case ->
+            activityMainBinding.apply {
+                map?.clear()
+                if (case != null) {
+                    texViewInfectedCount.text = case.confirmed.toString()
+                    texViewDeathsCount.text = case.deaths.toString()
+                    texViewRecoveredCount.text = case.recovered.toString()
+                    textViewNewestUpdate.text = resources.getString(
+                        R.string.newest_update,
+                        AppDateUtils.convertDateToNewest(case.date)
+                    )
+                    AppMapUtils.addMarker(this@MainActivity, map, case.lat, case.lon, case.country)
+                } else {
+                    texViewInfectedCount.text = getString(R.string.no_cases)
+                    texViewDeathsCount.text = getString(R.string.no_cases)
+                    texViewRecoveredCount.text = getString(R.string.no_cases)
+                    textViewNewestUpdate.text = getString(R.string.no_info)
+                    Snackbar.make(
+                        activityMainBinding.root, "No info for this country",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun setAnimation() {

@@ -3,7 +3,7 @@
     <string name="case_update_title">Case Update</string>
     <string name="maps_key">AIzaSyDwXab5o0SS8MqWJMZDCUCJv6LmKXWObZA</string>
     <string name="map_of_virus_title">Map of Virus</string>
-    <string name="newest_update">Newest update March 28</string>
+    <string name="newest_update">Newest update %1$s</string>
     <string name="header_title">All you need \n is stay at home.</string>
     <string name="country">Country</string>
     <string name="case_deaths">Deaths</string>
@@ -16,4 +16,6 @@
     <string name="wear_mask_text">Since the start of the coronavirus outbreak some places have fully embraced wearing face masks,
         and anyone caught without one risks becoming a social pariah.</string>
     <string name="prevention">Prevention</string>
+    <string name="no_info">No info</string>
+    <string name="no_cases">0</string>
 </resources>
