@@ -19,15 +19,13 @@ class ArraySpinnerAdapter(context: Context, list: List<CountryItem>) :
         if (convertView == null) {
             binding = SpinnerItemBinding.inflate(layoutInflater, parent, false)
         }
-        val country = getItem(position)
-        binding.textViewSpinner.text = country?.name
+        binding.textViewSpinner.text = getItem(position)?.name
         return binding.root
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         val binding = SpinnerDropdownItemBinding.inflate(layoutInflater, parent, false)
-        val country = getItem(position)
-        binding.textViewDropdownSpinner.text = country?.name
+        binding.textViewDropdownSpinner.text = getItem(position)?.name
         return binding.root
     }
 }

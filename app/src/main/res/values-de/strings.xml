@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">CovidApp</string>
     <string name="case_update_title">Infektionsfälle</string>
-    <string name="maps_key" translatable="false">AIzaSyDwXab5o0SS8MqWJMZDCUCJv6LmKXWObZA</string>
     <string name="map_of_virus_title">Virenkarte</string>
     <string name="newest_update">Letztes Update %1$s</string>
     <string name="header_title">Bleibe \n  zu Hause.</string>

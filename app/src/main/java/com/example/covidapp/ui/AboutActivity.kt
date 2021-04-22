@@ -19,7 +19,7 @@ class AboutActivity : AppCompatActivity() {
         setupRecycler()
 
         aboutBinding.imageViewMenuAbout.setOnClickListener {
-            this.finish()
+            finish()
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
