@@ -17,4 +17,5 @@
     <color name="infected">#FF8D52</color>
     <color name="recovered">#3EC333</color>
     <color name="deaths">#FF5050</color>
+    <color name="progress_bar">#217CDC</color>
 </resources>

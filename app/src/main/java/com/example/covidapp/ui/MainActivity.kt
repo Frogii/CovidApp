@@ -14,8 +14,8 @@ import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
 import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
-import com.example.covidapp.utils.AppDateUtils
-import com.example.covidapp.utils.AppMapUtils
+import com.example.covidapp.utils.*
+import com.example.covidapp.utils.Constants.NO_DATA
 import com.example.covidapp.utils.Constants.mapBundle
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -81,47 +81,69 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
         mainViewModel.getCase().observe(this) { case ->
             activityMainBinding.apply {
                 map?.clear()
-                if (case != null) {
-                    texViewInfectedCount.text = case.confirmed.toString()
-                    texViewDeathsCount.text = case.deaths.toString()
-                    texViewRecoveredCount.text = case.recovered.toString()
-                    textViewNewestUpdate.text = resources.getString(
-                        R.string.newest_update,
-                        AppDateUtils.convertDateToNewest(case.date)
-                    )
-                    AppMapUtils.addMarker(this@MainActivity, map, case.lat, case.lon, case.country)
-                } else {
-                    texViewInfectedCount.text = getString(R.string.no_cases)
-                    texViewDeathsCount.text = getString(R.string.no_cases)
-                    texViewRecoveredCount.text = getString(R.string.no_cases)
-                    textViewNewestUpdate.text = getString(R.string.no_info)
-                    Snackbar.make(
-                        activityMainBinding.root, getString(R.string.snackbar_no_info),
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                when (case) {
+                    is Resource.Success -> {
+                        hideProgress()
+                        case.data?.let {
+                            texViewInfectedCount.text = it.confirmed.toString()
+                            texViewDeathsCount.text = it.deaths.toString()
+                            texViewRecoveredCount.text = it.recovered.toString()
+                            textViewNewestUpdate.text = resources.getString(
+                                R.string.newest_update,
+                                AppDateUtils.convertDateToNewest(it.date)
+                            )
+                            AppMapUtils.addMarker(
+                                this@MainActivity,
+                                map,
+                                it.lat,
+                                it.lon,
+                                it.country
+                            )
+                        }
+                    }
+                    is Resource.Error -> {
+                        hideProgress()
+                        texViewInfectedCount.text = getString(R.string.no_cases)
+                        texViewDeathsCount.text = getString(R.string.no_cases)
+                        texViewRecoveredCount.text = getString(R.string.no_cases)
+                        textViewNewestUpdate.text = getString(R.string.no_info)
+                        if (case.message.equals(NO_DATA)) {
+                            Snackbar.make(
+                                activityMainBinding.root, getString(R.string.snackbar_no_info),
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Snackbar.make(
+                                activityMainBinding.root, getString(R.string.network_error),
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    is Resource.Loading -> {
+                        showProgress()
+                    }
                 }
             }
         }
     }
 
     private fun setAnimation() {
-        ObjectAnimator.ofFloat(activityMainBinding.imageViewInfectedRound, "alpha", 0f, 1f).also {
-            it.duration = 1200
-            it.repeatMode = ValueAnimator.REVERSE
-            it.repeatCount = Animation.INFINITE
-            it.start()
-        }
-        ObjectAnimator.ofFloat(activityMainBinding.imageViewDeathsRound, "alpha", 0f, 1f).also {
-            it.duration = 1200
-            it.repeatMode = ValueAnimator.REVERSE
-            it.repeatCount = Animation.INFINITE
-            it.start()
-        }
-        ObjectAnimator.ofFloat(activityMainBinding.imageViewRecoveredRound, "alpha", 0f, 1f).also {
-            it.duration = 1200
-            it.repeatMode = ValueAnimator.REVERSE
-            it.repeatCount = Animation.INFINITE
-            it.start()
-        }
+        AppAnimationsUtils.setBlinkAnimation(activityMainBinding.imageViewInfectedRound)
+        AppAnimationsUtils.setBlinkAnimation(activityMainBinding.imageViewDeathsRound)
+        AppAnimationsUtils.setBlinkAnimation(activityMainBinding.imageViewRecoveredRound)
+    }
+
+    private fun showProgress() {
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewInfectedCount, View.INVISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewDeathsCount, View.INVISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewRecoveredCount, View.INVISIBLE)
+        activityMainBinding.progressBarMain.visibility = View.VISIBLE
+    }
+
+    private fun hideProgress() {
+        activityMainBinding.progressBarMain.visibility = View.INVISIBLE
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewInfectedCount, View.VISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewDeathsCount, View.VISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewRecoveredCount, View.VISIBLE)
     }
 }

@@ -24,4 +24,5 @@
     <string name="cough">Cough</string>
     <string name="fever">Fever</string>
     <string name="snackbar_no_info">No info for this country</string>
+    <string name="network_error">Network error</string>
 </resources>
