@@ -25,23 +25,24 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
     fun getCases(countryName: String) {
         cases.postValue(Resource.Loading())
         viewModelScope.launch {
-                try {
-                    val response = repository.getCases(countryName)
-                    if (response.isSuccessful) {
-                        response.body()?.let { list ->
-                            if (list.isNotEmpty()) {
-                                cases.postValue(Resource.Success(list.last()))
-                            } else {
-                                cases.postValue(Resource.Error(NO_DATA))
-                            }
-
+            try {
+                val response = repository.getCases(countryName)
+                if (response.isSuccessful) {
+                    response.body()?.let { list ->
+                        if (list.isNotEmpty()) {
+                            sumProvinceCases(list)
+                            cases.postValue(Resource.Success(sumProvinceCases(list)))
+                        } else {
+                            cases.postValue(Resource.Error(NO_DATA))
                         }
+
                     }
-                } catch (e: Exception) {
-                    Log.d("myLog", e.message.toString())
-                    cases.postValue(Resource.Error(NETWORK_ERROR))
                 }
+            } catch (e: Exception) {
+                Log.d("myLog", e.message.toString())
+                cases.postValue(Resource.Error(NETWORK_ERROR))
             }
+        }
     }
 
     private fun uploadAllCountries() {
@@ -68,6 +69,24 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
             }
         } catch (e: Exception) {
             Log.d("myLog", e.message.toString())
+        }
+    }
+
+    //Check provinces(if country have them), and sum cases for last day
+    private fun sumProvinceCases(list: List<CountryCase>): CountryCase {
+        val filteredList = list.filter { it.date == list.last().date }
+        var infected = 0
+        var deaths = 0
+        var recovered = 0
+        for (item in filteredList) {
+            infected += item.confirmed
+            deaths += item.deaths
+            recovered += item.recovered
+        }
+        return list.last().also {
+            it.confirmed = infected
+            it.deaths = deaths
+            it.recovered = recovered
         }
     }
 
