@@ -14,11 +14,9 @@ import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
 import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
-import com.example.covidapp.utils.AppDateUtils
-import com.example.covidapp.utils.AppMapUtils
+import com.example.covidapp.utils.*
 import com.example.covidapp.utils.Constants.NO_DATA
 import com.example.covidapp.utils.Constants.mapBundle
-import com.example.covidapp.utils.Resource
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.snackbar.Snackbar
@@ -130,37 +128,22 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
     }
 
     private fun setAnimation() {
-        ObjectAnimator.ofFloat(activityMainBinding.imageViewInfectedRound, "alpha", 0f, 1f).also {
-            it.duration = 1200
-            it.repeatMode = ValueAnimator.REVERSE
-            it.repeatCount = Animation.INFINITE
-            it.start()
-        }
-        ObjectAnimator.ofFloat(activityMainBinding.imageViewDeathsRound, "alpha", 0f, 1f).also {
-            it.duration = 1200
-            it.repeatMode = ValueAnimator.REVERSE
-            it.repeatCount = Animation.INFINITE
-            it.start()
-        }
-        ObjectAnimator.ofFloat(activityMainBinding.imageViewRecoveredRound, "alpha", 0f, 1f).also {
-            it.duration = 1200
-            it.repeatMode = ValueAnimator.REVERSE
-            it.repeatCount = Animation.INFINITE
-            it.start()
-        }
+        AppAnimationsUtils.setBlinkAnimation(activityMainBinding.imageViewInfectedRound)
+        AppAnimationsUtils.setBlinkAnimation(activityMainBinding.imageViewDeathsRound)
+        AppAnimationsUtils.setBlinkAnimation(activityMainBinding.imageViewRecoveredRound)
     }
 
     private fun showProgress() {
-        activityMainBinding.texViewInfectedCount.visibility = View.INVISIBLE
-        activityMainBinding.texViewDeathsCount.visibility = View.INVISIBLE
-        activityMainBinding.texViewRecoveredCount.visibility = View.INVISIBLE
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewInfectedCount, View.INVISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewDeathsCount, View.INVISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewRecoveredCount, View.INVISIBLE)
         activityMainBinding.progressBarMain.visibility = View.VISIBLE
     }
 
     private fun hideProgress() {
         activityMainBinding.progressBarMain.visibility = View.INVISIBLE
-        activityMainBinding.texViewInfectedCount.visibility = View.VISIBLE
-        activityMainBinding.texViewDeathsCount.visibility = View.VISIBLE
-        activityMainBinding.texViewRecoveredCount.visibility = View.VISIBLE
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewInfectedCount, View.VISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewDeathsCount, View.VISIBLE)
+        AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewRecoveredCount, View.VISIBLE)
     }
 }
