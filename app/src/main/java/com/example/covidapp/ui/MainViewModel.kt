@@ -30,7 +30,6 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.let { list ->
                         if (list.isNotEmpty()) {
-                            sumProvinceCases(list)
                             cases.postValue(Resource.Success(sumProvinceCases(list)))
                         } else {
                             cases.postValue(Resource.Error(NO_DATA))
@@ -83,6 +82,7 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
             deaths += item.deaths
             recovered += item.recovered
         }
+        Log.d("myLog", "$infected $deaths $recovered")
         return list.last().also {
             it.confirmed = infected
             it.deaths = deaths
@@ -95,5 +95,4 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
     fun getNameOfCountries(): MutableLiveData<List<String>> = nameOfCountries
 
     fun getCase(): MutableLiveData<Resource<CountryCase>> = cases
-
 }

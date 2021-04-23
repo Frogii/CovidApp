@@ -20,7 +20,7 @@
         and respiratory infections, such as influenza.</string>
     <string name="prevention">Prevention</string>
     <string name="no_info">No info</string>
-    <string name="no_cases" translatable="false">0</string>
+    <string name="no_cases" translatable="false">-</string>
     <string name="cough">Cough</string>
     <string name="fever">Fever</string>
     <string name="snackbar_no_info">No info for this country</string>
