@@ -6,17 +6,17 @@ data class CountryCase(
     @SerializedName("City")
     val city: String,
     @SerializedName("Confirmed")
-    val confirmed: Int,
+    var confirmed: Int,
     @SerializedName("Country")
     val country: String,
     @SerializedName("Date")
     val date: String,
     @SerializedName("Deaths")
-    val deaths: Int,
+    var deaths: Int,
     @SerializedName("Lat")
     val lat: String,
     @SerializedName("Lon")
     val lon: String,
     @SerializedName("Recovered")
-    val recovered: Int
+    var recovered: Int
 )
