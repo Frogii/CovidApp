@@ -9,24 +9,16 @@
 
     <ImageView
         android:id="@+id/imageViewMenuAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/menu_margin"
-        android:elevation="@dimen/menu_elevation"
-        android:src="@drawable/ic_menu"
+        style="@style/MenuImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.florent37.shapeofview.shapes.ArcView
         android:id="@+id/headerAbout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/header_height"
-        android:elevation="@dimen/header_elevation"
+        style="@style/ArcView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shape_arc_height="@dimen/header_arc_height"
-        app:shape_arc_position="bottom">
+        app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:layout_width="match_parent"
@@ -46,26 +38,14 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewHeaderTextAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/header_text_margin_top"
-        android:layout_marginEnd="@dimen/header_text_margin_end"
-        android:elevation="@dimen/header_text_elevation"
-        android:fontFamily="@font/poppins_bold"
+        style="@style/HeaderText"
         android:text="@string/know_about_covid"
-        android:textColor="@color/header_text"
-        android:textSize="@dimen/header_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewVirusAbout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/image_virus_height"
-        android:elevation="@dimen/image_virus_elevation"
-        android:scaleX="1.1"
-        android:scaleY="1.1"
-        android:src="@drawable/image_virus"
+        style="@style/VirusImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -98,19 +78,12 @@
                 android:paddingTop="8dp">
 
                 <ImageView
-                    android:layout_width="@dimen/image_symptomp_width"
-                    android:layout_height="@dimen/image_symptomp_height"
-                    android:layout_gravity="center"
+                    style="@style/SymptompImage"
                     android:src="@drawable/image_headache" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/headache"
-                    android:textColor="@color/symptomp_text"
-                    android:textSize="@dimen/text_symptomp" />
+                    style="@style/SymptompText"
+                    android:text="@string/headache" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -131,19 +104,12 @@
                 android:paddingTop="8dp">
 
                 <ImageView
-                    android:layout_width="@dimen/image_symptomp_width"
-                    android:layout_height="@dimen/image_symptomp_height"
-                    android:layout_gravity="center"
+                    style="@style/SymptompImage"
                     android:src="@drawable/image_caugh" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/cough"
-                    android:textColor="@color/symptomp_text"
-                    android:textSize="@dimen/text_symptomp" />
+                    style="@style/SymptompText"
+                    android:text="@string/cough" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -166,44 +132,29 @@
                 android:paddingTop="8dp">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
+                    style="@style/SymptompImage"
                     android:src="@drawable/image_fever" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/fever"
-                    android:textColor="@color/symptomp_text"
-                    android:textSize="@dimen/text_symptomp" />
+                    style="@style/SymptompText"
+                    android:text="@string/fever" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textViewSymptompsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TitleText"
             android:layout_marginBottom="@dimen/title_symptomps"
-            android:fontFamily="@font/poppins_bold"
             android:text="@string/symptomps"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
             app:layout_constraintBottom_toTopOf="@+id/cardViewHeadache"
             app:layout_constraintStart_toStartOf="@+id/cardViewHeadache" />
 
         <TextView
             android:id="@+id/textViewPreventionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TitleText"
             android:layout_marginBottom="@dimen/title_preventions"
-            android:fontFamily="@font/poppins_bold"
             android:text="@string/prevention"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
             app:layout_constraintBottom_toTopOf="@+id/recyclerPreventions"
             app:layout_constraintStart_toStartOf="@+id/cardViewHeadache" />
 
