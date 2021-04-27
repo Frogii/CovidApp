@@ -10,24 +10,16 @@
 
     <ImageView
         android:id="@+id/imageViewMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu"
-        android:layout_margin="@dimen/menu_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        style="@style/MenuImage"
         app:layout_constraintEnd_toEndOf="parent"
-        android:elevation="@dimen/menu_elevation"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.florent37.shapeofview.shapes.ArcView
         android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/header_height"
-        android:elevation="@dimen/header_elevation"
+        style="@style/ArcView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shape_arc_height="@dimen/header_arc_height"
-        app:shape_arc_position="bottom">
+        app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:layout_width="match_parent"
@@ -47,26 +39,14 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewHeaderText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/header_text_margin_top"
-        android:layout_marginEnd="@dimen/header_text_margin_end"
-        android:elevation="@dimen/header_text_elevation"
-        android:fontFamily="@font/poppins_bold"
+        style="@style/HeaderText"
         android:text="@string/header_title"
-        android:textColor="@color/header_text"
-        android:textSize="@dimen/header_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewVirus"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/image_virus_height"
-        android:elevation="@dimen/image_virus_elevation"
-        android:scaleX="1.1"
-        android:scaleY="1.1"
-        android:src="@drawable/image_virus"
+        style="@style/VirusImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -256,9 +236,9 @@
                 <ProgressBar
                     android:id="@+id/progressBarMain"
                     style="?android:attr/progressBarStyle"
-                    android:indeterminateTint="@color/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/progress_bar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -270,26 +250,17 @@
 
         <TextView
             android:id="@+id/textViewCaseTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TitleText"
             android:layout_marginBottom="@dimen/title_case_margin_bottom"
-            android:fontFamily="@font/poppins_bold"
             android:text="@string/case_update_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
             app:layout_constraintBottom_toTopOf="@+id/cardViewCases"
             app:layout_constraintStart_toStartOf="@+id/cardViewCases" />
 
         <TextView
             android:id="@+id/textViewMapTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TitleText"
             android:layout_marginBottom="@dimen/title_map_margin_bottom"
-            android:fontFamily="@font/poppins_bold"
             android:text="@string/map_of_virus_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardViewMap"
             app:layout_constraintStart_toStartOf="@+id/cardViewMap" />
 

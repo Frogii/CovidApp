@@ -1,7 +1,7 @@
 <resources>
     <string name="case_update_title">Случаи заражения</string>
     <string name="map_of_virus_title">Карта вируса</string>
-    <string name="newest_update">Последнее обновление от %1$s</string>
+    <string name="newest_update">Последнее обновление %1$s</string>
     <string name="header_title">Оставайтесь \n дома.</string>
     <string name="country">Страна</string>
     <string name="case_deaths">Умершие</string>

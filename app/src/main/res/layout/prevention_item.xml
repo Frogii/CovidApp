@@ -63,7 +63,6 @@
                 app:layout_constraintStart_toStartOf="@+id/guidelineCard"
                 app:layout_constraintTop_toBottomOf="@+id/textViewPreventionType" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
