@@ -1,22 +1,25 @@
 package com.example.covidapp.ui
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
 import android.widget.AdapterView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.example.covidapp.R
 import com.example.covidapp.adapter.ArraySpinnerAdapter
 import com.example.covidapp.databinding.ActivityMainBinding
+import com.example.covidapp.model.CountryCase
 import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
-import com.example.covidapp.utils.*
+import com.example.covidapp.utils.AppAnimationsUtils
+import com.example.covidapp.utils.AppDateUtils
+import com.example.covidapp.utils.AppMapUtils
+import com.example.covidapp.utils.Constants.CASE_TEXT_SIZE
+import com.example.covidapp.utils.Constants.CASE_TEXT_SIZE_LOWER
 import com.example.covidapp.utils.Constants.NO_DATA
 import com.example.covidapp.utils.Constants.mapBundle
+import com.example.covidapp.utils.Resource
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.snackbar.Snackbar
@@ -85,6 +88,7 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
                     is Resource.Success -> {
                         hideProgress()
                         case.data?.let {
+                            chooseTextSize(it)
                             texViewInfectedCount.text = it.confirmed.toString()
                             texViewDeathsCount.text = it.deaths.toString()
                             texViewRecoveredCount.text = it.recovered.toString()
@@ -145,5 +149,20 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
         AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewInfectedCount, View.VISIBLE)
         AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewDeathsCount, View.VISIBLE)
         AppAnimationsUtils.setFadeVisibility(activityMainBinding.texViewRecoveredCount, View.VISIBLE)
+    }
+
+    private fun chooseTextSize(case: CountryCase) {
+        activityMainBinding.apply {
+            if (case.confirmed.toString().length > 7 || case.deaths.toString().length > 7 ||
+                case.recovered.toString().length > 7) {
+                texViewInfectedCount.textSize = CASE_TEXT_SIZE_LOWER
+                texViewDeathsCount.textSize = CASE_TEXT_SIZE_LOWER
+                texViewRecoveredCount.textSize = CASE_TEXT_SIZE_LOWER
+            } else {
+                texViewInfectedCount.textSize = CASE_TEXT_SIZE
+                texViewDeathsCount.textSize = CASE_TEXT_SIZE
+                texViewRecoveredCount.textSize = CASE_TEXT_SIZE
+            }
+        }
     }
 }

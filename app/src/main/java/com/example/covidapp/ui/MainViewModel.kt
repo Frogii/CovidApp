@@ -74,19 +74,10 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
     //Check provinces(if country have them), and sum cases for last day
     private fun sumProvinceCases(list: List<CountryCase>): CountryCase {
         val filteredList = list.filter { it.date == list.last().date }
-        var infected = 0
-        var deaths = 0
-        var recovered = 0
-        for (item in filteredList) {
-            infected += item.confirmed
-            deaths += item.deaths
-            recovered += item.recovered
-        }
-        Log.d("myLog", "$infected $deaths $recovered")
-        return list.last().also {
-            it.confirmed = infected
-            it.deaths = deaths
-            it.recovered = recovered
+        return list.last().also { countryCase ->
+            countryCase.confirmed = filteredList.sumBy { it.confirmed }
+            countryCase.deaths = filteredList.sumBy { it.deaths }
+            countryCase.recovered = filteredList.sumBy { it.recovered }
         }
     }
 
