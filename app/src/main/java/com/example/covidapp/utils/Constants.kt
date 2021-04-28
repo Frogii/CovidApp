@@ -6,4 +6,6 @@ object Constants {
     const val mapBundle = "MapBundle"
     const val NETWORK_ERROR = "networkError"
     const val NO_DATA = "noData"
+    const val ARGS_TEXT = "textId"
+    const val ARGS_IMAGE = "imageId"
 }

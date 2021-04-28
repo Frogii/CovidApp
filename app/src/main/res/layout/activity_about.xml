@@ -59,96 +59,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerAbout">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewHeadache"
-            android:layout_width="@dimen/card_symptomp_width"
-            android:layout_height="@dimen/card_symptomp_height"
-            android:layout_marginStart="@dimen/card_symptomp_headache_margin_start"
-            android:layout_marginTop="@dimen/card_symptomp_margin_top"
-            android:layout_marginEnd="@dimen/card_symptomp_headache_margin_end"
-            app:cardCornerRadius="@dimen/card_symptomp_corner_radius"
-            app:layout_constraintEnd_toStartOf="@+id/cardViewCough"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="8dp">
-
-                <ImageView
-                    style="@style/SymptompImage"
-                    android:src="@drawable/image_headache" />
-
-                <TextView
-                    style="@style/SymptompText"
-                    android:text="@string/headache" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewCough"
-            android:layout_width="@dimen/card_symptomp_width"
-            android:layout_height="@dimen/card_symptomp_height"
-            app:cardCornerRadius="@dimen/card_symptomp_corner_radius"
+        <com.pixplicity.multiviewpager.MultiViewPager
+            android:id="@+id/viewPagerSymptomp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pager_symptomp_height"
+            app:matchChildWidth="@+id/symptomp_item"
+            android:layout_marginTop="@dimen/pager_symptomp_margin_top"
+            android:layout_marginHorizontal="@dimen/pager_symptomp_headache_margin_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/cardViewHeadache">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="8dp">
-
-                <ImageView
-                    style="@style/SymptompImage"
-                    android:src="@drawable/image_caugh" />
-
-                <TextView
-                    style="@style/SymptompText"
-                    android:text="@string/cough" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewFever"
-            android:layout_width="@dimen/card_symptomp_width"
-            android:layout_height="@dimen/card_symptomp_height"
-            android:layout_marginStart="@dimen/card_symptomp_fever_margin_start"
-            android:layout_marginEnd="@dimen/card_symptomp_fever_margin_end"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardViewCough"
-            app:layout_constraintTop_toTopOf="@id/cardViewHeadache">
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:paddingTop="8dp">
-
-                <ImageView
-                    style="@style/SymptompImage"
-                    android:src="@drawable/image_fever" />
-
-                <TextView
-                    style="@style/SymptompText"
-                    android:text="@string/fever" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/textViewSymptompsTitle"
             style="@style/TitleText"
             android:layout_marginBottom="@dimen/title_symptomps"
             android:text="@string/symptomps"
-            app:layout_constraintBottom_toTopOf="@+id/cardViewHeadache"
-            app:layout_constraintStart_toStartOf="@+id/cardViewHeadache" />
+            app:layout_constraintBottom_toTopOf="@+id/viewPagerSymptomp"
+            app:layout_constraintStart_toStartOf="@+id/viewPagerSymptomp" />
 
         <TextView
             android:id="@+id/textViewPreventionTitle"
@@ -156,7 +84,7 @@
             android:layout_marginBottom="@dimen/title_preventions"
             android:text="@string/prevention"
             app:layout_constraintBottom_toTopOf="@+id/recyclerPreventions"
-            app:layout_constraintStart_toStartOf="@+id/cardViewHeadache" />
+            app:layout_constraintStart_toStartOf="@+id/viewPagerSymptomp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerPreventions"
@@ -166,7 +94,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardViewHeadache"
+            app:layout_constraintTop_toBottomOf="@id/viewPagerSymptomp"
             tools:listitem="@layout/prevention_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
