@@ -55,8 +55,8 @@
     <dimen name="image_symptomp_width">60dp</dimen>
     <dimen name="image_symptomp_height">60dp</dimen>
     <dimen name="text_symptomp">11sp</dimen>
-    <dimen name="title_symptomps">8dp</dimen>
-    <dimen name="title_preventions">8dp</dimen>
+    <dimen name="title_symptomps_margin_bottom">8dp</dimen>
+    <dimen name="title_preventions_margin_bottom">8dp</dimen>
     <dimen name="recycler_preventions_margin_top">60dp</dimen>
     <dimen name="image_prevention_elevation">4dp</dimen>
     <dimen name="card_prevention_height">150dp</dimen>
@@ -88,4 +88,6 @@
     <dimen name="spinner_card_stroke_width">1dp</dimen>
     <dimen name="veiw_pager_margin">-64</dimen>
     <dimen name="pager_symptomp_height">100dp</dimen>
+    <dimen name="title_symptomps_margin_start">16dp</dimen>
+    <dimen name="title_preventions_margin_start">16dp</dimen>
 </resources>

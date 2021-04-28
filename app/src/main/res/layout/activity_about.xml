@@ -73,18 +73,20 @@
         <TextView
             android:id="@+id/textViewSymptompsTitle"
             style="@style/TitleText"
-            android:layout_marginBottom="@dimen/title_symptomps"
+            android:layout_marginStart="@dimen/title_symptomps_margin_start"
+            android:layout_marginBottom="@dimen/title_symptomps_margin_bottom"
             android:text="@string/symptomps"
             app:layout_constraintBottom_toTopOf="@+id/viewPagerSymptomp"
-            app:layout_constraintStart_toStartOf="@+id/viewPagerSymptomp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textViewPreventionTitle"
             style="@style/TitleText"
-            android:layout_marginBottom="@dimen/title_preventions"
+            android:layout_marginStart="@dimen/title_preventions_margin_start"
+            android:layout_marginBottom="@dimen/title_preventions_margin_bottom"
             android:text="@string/prevention"
             app:layout_constraintBottom_toTopOf="@+id/recyclerPreventions"
-            app:layout_constraintStart_toStartOf="@+id/viewPagerSymptomp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerPreventions"
