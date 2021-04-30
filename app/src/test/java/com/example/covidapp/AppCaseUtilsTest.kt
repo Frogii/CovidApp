@@ -1,10 +1,11 @@
 package com.example.covidapp
 
 import com.example.covidapp.model.CountryCase
+import com.example.covidapp.utils.AppCaseUtils
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class MainViewModelTest {
+class AppCaseUtilsTest {
 
     private val testCountry1 = CountryCase("a", "A", 4, 2, 5, "21.01.2021", "0", "0")
     private val testCountry2 = CountryCase("a", "A", 8, 4, 10, "21.01.2021", "0", "0")
@@ -34,27 +35,18 @@ class MainViewModelTest {
         CountryCase("a", "A", 4, 2, 5, "21.01.2021", "0", "0")
     )
 
-    private fun sumProvinceCasesTest(list: List<CountryCase>): CountryCase {
-        val filteredList = list.filter { it.date == list.last().date }
-        return list.last().also { countryCase ->
-            countryCase.confirmed = filteredList.sumBy { it.confirmed }
-            countryCase.deaths = filteredList.sumBy { it.deaths }
-            countryCase.recovered = filteredList.sumBy { it.recovered }
-        }
-    }
-
     @Test
     fun sumProvinceTest1() {
-        assertEquals(testCountry1, sumProvinceCasesTest(testResponse1))
+        assertEquals(testCountry1, AppCaseUtils.sumProvinceCases(testResponse1))
     }
 
     @Test
     fun sumProvinceTest2() {
-        assertEquals(testCountry2, sumProvinceCasesTest(testResponse2))
+        assertEquals(testCountry2, AppCaseUtils.sumProvinceCases(testResponse2))
     }
 
     @Test
     fun sumProvinceTest3() {
-        assertEquals(testCountry3, sumProvinceCasesTest(testResponse3))
+        assertEquals(testCountry3, AppCaseUtils.sumProvinceCases(testResponse3))
     }
 }

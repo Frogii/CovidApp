@@ -17,6 +17,7 @@ import com.example.covidapp.utils.AppDateUtils
 import com.example.covidapp.utils.AppMapUtils
 import com.example.covidapp.utils.Constants.CASE_TEXT_SIZE
 import com.example.covidapp.utils.Constants.CASE_TEXT_SIZE_LOWER
+import com.example.covidapp.utils.Constants.MAX_CASE_SIZE
 import com.example.covidapp.utils.Constants.NO_DATA
 import com.example.covidapp.utils.Constants.mapBundle
 import com.example.covidapp.utils.Resource
@@ -153,8 +154,8 @@ class MainActivity : MapActivity(), OnMapReadyCallback {
 
     private fun chooseTextSize(case: CountryCase) {
         activityMainBinding.apply {
-            if (case.confirmed.toString().length > 7 || case.deaths.toString().length > 7 ||
-                case.recovered.toString().length > 7) {
+            if (case.confirmed.toString().length > MAX_CASE_SIZE || case.deaths.toString().length > MAX_CASE_SIZE ||
+                case.recovered.toString().length > MAX_CASE_SIZE) {
                 texViewInfectedCount.textSize = CASE_TEXT_SIZE_LOWER
                 texViewDeathsCount.textSize = CASE_TEXT_SIZE_LOWER
                 texViewRecoveredCount.textSize = CASE_TEXT_SIZE_LOWER

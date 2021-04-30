@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.covidapp.model.CountryCase
 import com.example.covidapp.model.CountryItem
 import com.example.covidapp.repository.CovidRepository
+import com.example.covidapp.utils.AppCaseUtils
 import com.example.covidapp.utils.Constants.NETWORK_ERROR
 import com.example.covidapp.utils.Constants.NO_DATA
 import com.example.covidapp.utils.Resource
@@ -30,7 +31,7 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.let { list ->
                         if (list.isNotEmpty()) {
-                            cases.postValue(Resource.Success(sumProvinceCases(list)))
+                            cases.postValue(Resource.Success(AppCaseUtils.sumProvinceCases(list)))
                         } else {
                             cases.postValue(Resource.Error(NO_DATA))
                         }
@@ -68,16 +69,6 @@ class MainViewModel(private val repository: CovidRepository) : ViewModel() {
             }
         } catch (e: Exception) {
             Log.d("myLog", e.message.toString())
-        }
-    }
-
-    //Check provinces(if country have them), and sum cases for last day
-    private fun sumProvinceCases(list: List<CountryCase>): CountryCase {
-        val filteredList = list.filter { it.date == list.last().date }
-        return list.last().also { countryCase ->
-            countryCase.confirmed = filteredList.sumBy { it.confirmed }
-            countryCase.deaths = filteredList.sumBy { it.deaths }
-            countryCase.recovered = filteredList.sumBy { it.recovered }
         }
     }
 

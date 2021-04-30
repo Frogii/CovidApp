@@ -8,4 +8,5 @@ object Constants {
     const val NO_DATA = "noData"
     const val CASE_TEXT_SIZE = 28f
     const val CASE_TEXT_SIZE_LOWER = 20f
+    const val MAX_CASE_SIZE = 7
 }
