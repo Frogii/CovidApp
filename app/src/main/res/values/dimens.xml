@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="case_count">28sp</dimen>
+    <dimen name="case_count_low">19sp</dimen>
     <dimen name="case_text">12sp</dimen>
     <dimen name="title_size">18sp</dimen>
     <dimen name="header_size">22sp</dimen>

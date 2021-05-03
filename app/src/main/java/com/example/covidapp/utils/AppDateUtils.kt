@@ -18,7 +18,11 @@ class AppDateUtils {
         }
 
         private fun stringToDate(dateString: String): Date {
-            return dateFormatter.parse(dateString) ?: Date()
+            return try {
+                dateFormatter.parse(dateString) as Date
+            } catch (e: Exception) {
+                Date()
+            }
         }
 
         private fun dateToString(date: Date): String {
